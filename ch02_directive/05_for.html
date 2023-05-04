@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Insert title here</title>
+  <meta http-equiv="Cache-Control" content="No-Cache" />
+</head>
+
+<body>
+  <div id="app">
+    <h3>배열 데이터 표현</h3>
+    <!-- TODO: heroes 배열의 모든 내용을 ul과 li를 이용해 출력하시오 -->
+    <ul>
+      <li v-for="( index,hero) in heroes" ::key="index">{{index}} {{ hero }}</li>
+    </ul>
+    <!-- END: -->
+    <!-- TODO: 짝수번째 hreo 들만 인덱스와 함께 출력하시오. -->
+    <ul>
+      <li v-for="( index,hero) in evens" :key="index">{{ index }} : {{ hero }}</li>
+    </ul>
+    <!-- END: -->
+
+    <h3>객체 데이터 표현</h3>
+    <!-- TODO: ironMan의 모든 속성을 속성이름과 함께 출력하시오. -->
+    <ul>
+      <li v-for="( item,key, index) in ironMan" :key="index">{{ index }} : {{ item }} : {{key}} </li>
+    </ul>
+    <!-- END: -->
+    <h3>&lt;template&gt;활용</h3>
+    <!-- TODO: heroes들을 모두 div에 출력하시오. 단 2명 나올 때마다 hr 태그를 추가한다. -->
+    <template v-for="(hero, index) in heroes">
+      <div :key="index">{{ hero }}</div>
+      <hr v-if="index % 2 == 1 && index > 0 " />
+    </template>
+    <!-- END: -->
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  let model = {
+    heroes: ["아이언맨", "헐크", "토르", "캡틴아메리카", "비전"],
+    ironMan: {
+      name: "토니스타크",
+      nickName: "깡통"
+    }
+  };
+
+  let app = new Vue({
+    el: "#app",
+    data: model,
+    computed: {
+      evens() {
+        let evenHeros = this.heroes.filter((hero, index) => index % 2 == 0);
+        return evenHeros;
+      }
+    }
+  });
+</script>
+
+</html>

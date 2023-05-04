@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <meta http-equiv="Cache-Control" content="No-Cache" />
+    <style>
+        img {
+            width: 15px;
+            height: 15px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="info">
+        <label>나이를 입력하세요.</label>
+
+        <!-- TODO: model의 age와 상호 연동하는 input을 작성하시오. 만약 입력값이 음수인 경우 input 뒤에 /images/error.png를 보인다. -->
+        <input type="number" v-model.lazy.number="age" />
+        <img v-if="age < 0" src="/images/error.png" />
+
+        <span v-if="age < 0">입력오류</span>
+        <span v-show="age < 0">입력오류</span>
+
+        <!-- END: -->
+        <hr />
+
+        당신은
+        <!-- TODO: age 입력 값에 따라서 입력오류, 미취학, 미성년, 성년을 출력하시오. -->
+        <span v-if="age < 0">입력오류</span>
+        <span v-else-if="age < 7">미취학</span>
+        <span v-else-if="age < 20">미성년</span>
+        <span v-else>성년</span>
+
+        <!-- END: -->
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let model = {
+        age: 0,
+    };
+
+    let vi = new Vue({
+        el: "#info",
+        data: model,
+    });
+</script>
+
+</html>

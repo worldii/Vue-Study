@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <meta http-equiv="Cache-Control" content="No-Cache" />
+    <style>
+      #table {
+        width: 400px;
+        border-collapse: collapse;
+      }
+
+      #table td,
+      #table th {
+        text-align: center;
+        border: 1px solid black;
+      }
+
+      #table > thead {
+        color: white;
+        background: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>
+        email:
+        <!-- TODO: 01 문자열을 입력 받을 수 있는 input을 선언하시오. 
+        <!-- END: -->
+      </p>
+      <table id="table">
+        <thead>
+          <tr>
+            <th>email</th>
+            <th>job id</th>
+            <th>salary</th>
+          </tr>
+        </thead>
+        <tbody id="contents">
+          <!-- TODO: 03 filtered의 email, jobid, salary를 표현하는 tr을 선언하시오. -->
+          <!-- @@ 단 이 항목들은 input에서 입력한 값을 포함할 때만 표현된다. -->
+          <!-- END: -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let model = {
+      email: "",
+      contents: [
+        {
+          email: "SKING",
+          jobid: "AD_PRES",
+          salary: 24000
+        },
+        {
+          email: "NKOCHHAR",
+          jobid: "AD_VP",
+          salary: 17000
+        },
+        {
+          email: "LDEHAAN",
+          jobid: "AD_VP",
+          salary: 17000
+        },
+        {
+          email: "AHUNOLD",
+          jobid: "IT_PROG",
+          salary: 9000
+        },
+        {
+          email: "BERNST",
+          jobid: "IT_PROG",
+          salary: 6000
+        },
+        {
+          email: "DAUSTIN",
+          jobid: "IT_PROG",
+          salary: 4800
+        },
+        {
+          email: "VPATABAL",
+          jobid: "IT_PROG",
+          salary: 4800
+        },
+        {
+          email: "DLORENTZ",
+          jobid: "IT_PROG",
+          salary: 4200
+        },
+        {
+          email: "NGREENBE",
+          jobid: "FI_MGR",
+          salary: 12008
+        },
+        {
+          email: "DFAVIET",
+          jobid: "FI_ACCOUNT",
+          salary: 9000
+        }
+      ]
+    };
+    // TODO: 02 app id 영역과 연결되는 vue객체를 생성하시오.
+    // @@ 이 객체의 computed에는 email을 like 검색해서 적합한 요소들만 계산해서 반환하는 filtered라는 함수를 갖는다.
+    // @@ https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+    // END:
+  </script>
+</html>

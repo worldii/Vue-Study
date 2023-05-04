@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--    view 화면 -->
+    <ul id="app">
+        <li>{{ message }}</li>
+        <!-- vus.js import-->
+        <li v-text="message"></li>
+
+        <li v-html="message"></li>
+        <li v-html="message" v-once></li>
+
+
+    </ul>
+    <!-- vue.js import-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        // data  :  view 화면에 표시할 데이터 model 
+        let model = {
+            message: 'Hello Vue.js!'
+        }
+
+        // view -model 연결
+        let vm = new Vue({
+            el: '#app', //el : element view 화면의 id
+            data: model //data : view 화면에 표시할 데이터
+        })
+
+        // 위의 #app 영역에서 사용할 vue instance , model 은 message 를 키로 <h1>hi vue </h1> 를 값으로 가지고 있다. 
+        const vi = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: '<h1>hi vue </h1>'
+                }
+            }
+        })
+
+        // 컴포넌트 : 화면의 영역을 구분하여 개발
+        // model : 데이터
+        // 고정 데이터 : model
+        // 변경 데이터 : view 화면의 데이터
+        // 매번 컴포넌트 마다 별도의 데이터를 가져가야 하기 때문에
+
+
+        // view 화면의 데이터 변경
+        // vm.message = 'Hello Vue.js!'
+
+        // life cycle : vue.js의 라이프 사이클
+        // hook : 라이프 사이클의 각 단계에서 실행되는 함수
+        // created : 라이프 사이클의 created 단계에서 실행되는 함수
+
+
+
+
+    </script>
+
+</body>
+
+</html>

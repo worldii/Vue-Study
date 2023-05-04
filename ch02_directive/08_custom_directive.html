@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <div v-my-directive="{color:'blue'}">{{now}}</div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.directive("my-directive", function (elm, binding, node) {
+            console.log("bind or update");
+            console.log(elm);
+            console.log(binding);
+            console.log(node);
+            elm.style.color = binding.value.color;
+        });
+        let vi = new Vue({
+            el: "#app",
+            data: {
+                now: new Date(),
+            },
+        });
+    </script>
+</html>

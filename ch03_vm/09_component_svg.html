@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id="first">
+            <svg width="200" height="100">
+                <!--하위 컴포넌트 사용: 지정된 prop을 이용해서 값 전달-->
+                <my-svg ccx="50" ccy="50" cr="40"></my-svg>
+                <my-svg ccx="150" ccy="50" cr="20"></my-svg>
+            </svg>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let vi = new Vue({
+            el: "#first",
+            components: {
+                // 하위 컴포넌트 선언
+                "my-svg": {
+                    props: ["ccx", "ccy", "cr"], // 부모 컴포넌트가 자식에게 넘겨주기 위한 값 선언
+                    template: "<circle :cx='ccx' :cy='ccy' :r='cr' stroke='green' stroke-width='4' fill='yellow'/>",
+                },
+            },
+        });
+    </script>
+</html>
