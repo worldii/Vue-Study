@@ -1,91 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Document</title>
-        <script src="http://unpkg.com/vue"></script>
-    </head>
-    <body>
-        <div id="first">
-            <div>{{title|toH3}}</div>
-            <!--이벤트를 DOM에 등록된 경우 이므로  Vue객체가 삭제되도 이벤트는 동작된다. 
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="first">
+        <div>{{title|toH3}}</div>
+        <!--이벤트를 DOM에 등록된 경우 이므로  Vue객체가 삭제되도 이벤트는 동작된다. 
             -->
-            <div v-on:click="showMyName">클릭</div>
-            <div v-on:click="removeVue">Vue객체 삭제</div>
-            <div v-if="hasResult">{{title}}</div>
-        </div>
-        <script>
-            var app = new Vue({
-                el: "#first",
-                data: { title: "sSAFY" },
-                filters: {
-                    toH3: function (value) {
-                        //filter함수에 전달되는 인자는 해당 데이타
-                        console.log("toH3..........................");
-                        return value + "hello";
-                    },
+        <div v-on:click="showMyName">클릭</div>
+        <div v-on:click="removeVue">Vue객체 삭제</div>
+        <div v-if="hasResult">{{title}}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+        var app = new Vue({
+            el: "#first",
+            data: { title: "sSAFY" },
+            filters: {
+                toH3: function (value) {
+                    //filter함수에 전달되는 인자는 해당 데이타
+                    console.log("toH3..........................");
+                    return value + "hello";
                 },
-                methods: {
-                    //호출할 때 마다 매번 수행됨.
-                    removeVue: function () {
-                        app.$destroy(); //vue 객체 삭제
-                    },
-                    showMyName: function () {
-                        console.log("showMyName.......................");
-                        return (this.$data.title = "SSAFY hello!!");
-                    },
+            },
+            methods: {
+                //호출할 때 마다 매번 수행됨.
+                removeVue: function () {
+                    app.$destroy(); //vue 객체 삭제
                 },
-                computed: {
-                    // cache에 들어가는 정적 데이타 초기화 관리
-                    hasResult: function () {
-                        console.log("hasResult.......................");
-                        return this.title.length > 10;
-                    },
+                showMyName: function () {
+                    console.log("showMyName.......................");
+                    return (this.$data.title = "SSAFY hello!!");
                 },
-                //데이타가 변하는지 감시하고 있다가 변하면 호출
-                //리턴할 필요가 없다.
-                //형식 : Vue데이타속성명:function(새로운값, 이전값){}
-                watch: {
-                    title: function (newValue, oldValue) {
-                        console.log("watch..................oldValue:" + oldValue);
-                        console.log("watch..................newValue:" + newValue);
-                    },
+            },
+            computed: {
+                // cache에 들어가는 정적 데이타 초기화 관리
+                hasResult: function () {
+                    console.log("hasResult.......................");
+                    return this.title.length > 10;
                 },
-                beforeCreate: function () {
-                    //Vue객체가 생성되기 전에 호출되는 hook
-                    console.log("beforeCreate........................." + this.title);
+            },
+            //데이타가 변하는지 감시하고 있다가 변하면 호출
+            //리턴할 필요가 없다.
+            //형식 : Vue데이타속성명:function(새로운값, 이전값){}
+            watch: {
+                title: function (newValue, oldValue) {
+                    console.log("watch..................oldValue:" + oldValue);
+                    console.log("watch..................newValue:" + newValue);
                 },
-                created: function () {
-                    //Vue객체가 생성된 후에 호출되는 hook
-                    console.log("created........................." + this.title);
-                },
-                beforeMount: function () {
-                    //DOM 트리가 구성이 되고 화면에 표시(랜더링)되기 전에 호출
-                    console.log("beforeMount........................." + this.title);
-                },
-                mounted: function () {
-                    //DOM 트리가 구성이 되고 화면에 표시(랜더링)되기 후에 호출
-                    console.log("mounted........................." + this.title);
-                },
-                beforeUpdate: function () {
-                    //Vue 모델(data)가 변경되기 전에 호출
-                    console.log("beforeUpdate........................." + this.title);
-                },
-                updated: function () {
-                    //Vue 모델(data)가 변경된 후에 호출
-                    console.log("updated........................." + this.title);
-                },
-                beforeDestroy: function () {
-                    //Vue 객체가 삭제 되기 전에 호출
-                    console.log("beforeDestroy.........................");
-                },
-                destroyed: function () {
-                    //Vue 객체가 삭제 된 후에 호출
-                    console.log("destroyed.........................");
-                },
-            });
-        </script>
-    </body>
+            },
+            beforeCreate: function () {
+                //Vue객체가 생성되기 전에 호출되는 hook
+                console.log("beforeCreate........................." + this.title, this.$el);
+            },
+            created: function () {
+                //Vue객체가 생성된 후에 호출되는 hook
+                console.log("created........................." + this.title, this.$el);
+            },
+            beforeMount: function () {
+                //DOM 트리가 구성이 되고 화면에 표시(랜더링)되기 전에 호출
+                console.log("beforeMount........................." + this.title, this.$el.innerHTML);
+            },
+            mounted: function () {
+                //DOM 트리가 구성이 되고 화면에 표시(랜더링)되기 후에 호출
+                console.log("mounted........................." + this.title, this.$el.innerHTML);
+            },
+            beforeUpdate: function () {
+                //Vue 모델(data)가 변경되기 전에 호출
+                console.log("beforeUpdate........................." + this.title, this.$el);
+            },
+            updated: function () {
+                //Vue 모델(data)가 변경된 후에 호출
+                console.log("updated........................." + this.title, this.$el);
+            },
+            beforeDestroy: function () {
+                //Vue 객체가 삭제 되기 전에 호출
+                console.log("beforeDestroy.........................");
+            },
+            destroyed: function () {
+                //Vue 객체가 삭제 된 후에 호출
+                console.log("destroyed.........................");
+            },
+        });
+    </script>
+</body>
+
 </html>
