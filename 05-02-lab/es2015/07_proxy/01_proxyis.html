@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        const target = {
+            foodA: "김치찌개",
+        };
+
+        const handler = {
+            // TODO: proxy를 통해 target의 foodA에 접근할 때 부가적인 동작을 처리하시오.
+
+            // END
+
+            // TODO: proxy를 통해 target의 속성을 변경할 때 내용을 반영하시오.
+
+            // END
+        };
+
+        const proxy = new Proxy(target, handler);
+        console.log(`주문: ${target.foodA},`, target);
+        console.log(`주문: ${proxy.foodA}, `, proxy);
+
+        proxy.foodA = "삼겹살";
+        console.log(`주문: ${target.foodA},`, target);
+        console.log(`주문: ${proxy.foodA}, `, proxy);
+    </script>
+</html>

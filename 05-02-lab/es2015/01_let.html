@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="button" value="1" class="bad" />
+    <input type="button" value="2" class="bad" />
+    <input type="button" value="3" class="bad" />
+    <br />
+    <input type="button" value="4" class="good" />
+    <input type="button" value="5" class="good" />
+    <input type="button" value="6" class="good" />
+    <br />
+    <input type="button" value="7" class="best" />
+    <input type="button" value="8" class="best" />
+    <input type="button" value="9" class="best" />
+  </body>
+  <script>
+    //1. let 변수의 scope/////////////////////////////////////////////////////
+    let func = function () {
+      {
+        let a = 10;
+        const b = 20;
+        var c = 30;
+        console.log(a, b, c);
+      }
+      // TODO: 1. a, b, c 중 사용 가능한 변수를 확인해보자.
+
+      // END
+    };
+    func();
+
+    //2. event 처리////////////////////////////////////////////////////////////
+    let buttons = document.querySelectorAll(".bad");
+
+    for (var btn of buttons) {
+      console.log(btn); // 버튼의 정보 확인
+      btn.addEventListener("click", function () {
+        console.log(btn.value);
+      });
+    }
+    console.log("for 문장 외부 var btn", btn.value);
+
+    // closure 이용
+    buttons = document.querySelectorAll(".good");
+    for (var btn of buttons) {
+      // 함수만의 스코프로 만들어줘서 독립적으로 동작하게 한다.
+      (function (btnLocal) {
+        btnLocal.addEventListener("click", function () {
+          console.log(btnLocal.value);
+        });
+      })(btn);
+    }
+
+    // TODO: 2. let 변수를 이용해서 bests 클래스의 버튼들에 클릭 이벤트를 적용하시오.
+
+    // END
+  </script>
+</html>

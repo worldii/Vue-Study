@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const p1 = Promise.resolve("1");
+    const p2 = p1.then((val) => {
+      console.log(`p2, value = ${val}`);
+      return "2";                  // 일반 값 반환
+    });
+    const p3 = p2.then((val) => {
+      console.log(`p3, value = ${val}`);
+      throw "3";                   // 예외 발생
+    });
+    const p4 = p3.catch((reason) => {
+      console.log(`p4, reason = ${reason}`);
+      return Promise.resolve("4"); // 이미 완료된 Promise 객체 반환
+    });
+    const p5 = p4.then((val) => {
+      console.log(`p5, value = ${val}`);
+    });
+    console.log("done");
+  </script>
+</html>

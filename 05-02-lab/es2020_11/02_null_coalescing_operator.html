@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let falsy = ["", false, 0, undefined, null];
+
+    falsy.forEach((item) => {
+      console.log(item, item ? true : false, item || "값지정 필요");
+    });
+
+    // TODO: 위 문장에 nullis coalescing 연산자를 적용해보세요.
+
+    // END
+
+    let trueOrFalse = false;
+    let input1 = trueOrFalse || "값누락";
+    let input2 = trueOrFalse ?? "값누락";
+    console.log(input1 == "값누락" ? "필수항목" : `${input1}을 선택하셨군요`); // 필수항목
+    console.log(input2 == "값누락" ? "필수항목" : `${input2}을 선택하셨군요`); // false을 선택하셨군요
+
+    let age = 0;
+    input1 = age || "값누락";
+    input2 = age ?? "값누락";
+    console.log(input1 == "값누락" ? "필수항목" : `${input1}살이군요`); // 필수항목
+    console.log(input2 == "값누락" ? "필수항목" : `${input2}살이군요`); // 0살이군요
+  </script>
+</html>

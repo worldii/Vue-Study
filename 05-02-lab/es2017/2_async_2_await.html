@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    async function mainfun(init) {
+      console.log(`초기 값: ${init}`);
+      let v1 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log(`비동기 작업 진행 1`);
+          resolve(init * 10);
+        }, 1000);
+      });
+
+      console.log(`처음 비동기 작업 종료.. ${v1}`);
+      let v2 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log(`비동기 작업 진행 2`);
+          resolve(v1 * 10);
+        }, 1000);
+      });
+      console.log(`두 번째 비동기 작업 종료 ${v2}`);
+      console.log("main fun end");
+    }
+
+    mainfun(5);
+    console.log("script over");
+  </script>
+</html>

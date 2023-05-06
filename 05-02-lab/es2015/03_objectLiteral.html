@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let language = "javascript";
+    let oldStyle = {
+      language: language,
+      sayLang: function () {
+        console.log(`사용 언어는 ${this.language} 이다.`);
+      },
+    };
+
+    // TODO: property shorthand와 consise method를 이용해서 객체를 선언해보자.
+
+    // END
+
+    let normal = {
+      name: "hong",
+      age: 30,
+    };
+
+    let oldHero = {
+      name: normal.name,
+      age: normal.age,
+      nick: "율도국왕",
+    };
+
+    console.log(oldHero, normal);
+
+    // TODO: spread operator를 이용해서 newHero 객체를 작성하시오.
+
+    // END
+
+    let person = {
+      name: "홍길동",
+      age: 10,
+      addr: "서울 중랑구",
+    };
+
+    function printPerson1(person) {
+      let name = person.name;
+      let age = person.age;
+      let addr = person.addr;
+
+      console.log(`${name}은 ${age}살인데 ${addr}에 살아.`);
+    }
+    printPerson1(person);
+
+    // TODO: destructuring을 통해 person의 속성을 사용하는 함수를 작성하시오.
+
+    // END
+
+    // computed property name
+    let dynamic_prop_obj = {
+      ["name" + "_1"]: "hong",
+    };
+    console.log(dynamic_prop_obj);
+
+    // TODO: gugudan 객체를 만들면서 키를 gugu_1~gugu_9로 하고 각 키의 값으로 구구단 내용을 배열로 저정하시오.
+
+    // END
+  </script>
+</html>

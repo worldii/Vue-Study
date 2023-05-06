@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let func = function (name) {
+      return "안녕 " + name;
+    };
+    console.log(func("kim"));
+
+    // TODO: 위 함수를 arrow 함수로 작성하세요.
+
+    // END
+
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    let arr = [new Person("hong", 30), new Person("jang", 20), new Person("henry", 40)];
+
+    arr.sort(function (a, b) {
+      return a.age > b.age ? 1 : -1; // 나이에 대한 오름차순
+    });
+    console.log("나이 오름차순: ", arr);
+
+    // TODO: arror 함수를 이용해 arr의 내용이 이름에 대한 오름차순으로 정렬되도록 처리하시오.
+
+    // END
+
+    function User() {
+      this.name = "hong";
+      this.normalFunc = function () {
+        // 함수 호출의 결과 생성된
+        console.log("normal", this, this.name);
+        // TODO: setTimeout의 callback을 일반 함수와 arrow 함수로 작성해보고 this를 확인하시오.
+
+        // END
+      };
+    }
+
+    const user = new User();
+    user.normalFunc();
+  </script>
+</html>

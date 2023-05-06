@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 반드시 성공하는 녀석 - catch 함수는 필요치 않다.
+    const resolvedPromise = Promise.resolve("success");
+    resolvedPromise.then((val) => {
+      console.log(`필승 ${val}`);
+    });
+
+    // 반드시 실패하는 녀석 - then 함수는 필요치 않다.
+    const rejected = Promise.reject("fail");
+    rejected.catch((val) => {
+      console.log(`필패 ${val}`);
+    });
+
+    // all
+    const waitMe = function (name) {
+      return new Promise((resolve, reject) => {
+        // something todo
+        const time = Math.random() * 2000;
+        setTimeout(() => {
+          console.log(`이름: ${name}, 대기시간: ${time}`);
+          resolve(name);
+        }, time);
+      });
+    };
+    // then 콜백 파라미터에는 각각의 promise들이 반환한 값들이 모여서 전달
+    Promise.all([waitMe("hong"), waitMe("jang"), waitMe("kim")]).then((names) => {
+      console.log(`모두 종료 : ${names}`);
+    });
+  </script>
+</html>
