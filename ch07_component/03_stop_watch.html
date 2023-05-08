@@ -1,24 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="app">
-      <stop-watch-component></stop-watch-component>
-    </div>
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <!-- TODO: 2 stop-watch-component를 위한 template을 작성하시오.-->
-  <!-- END: -->
-  <script>
-    // TODO: 1. stop watch 동작을 위한 stop-watch-component를 전역 component로 작성하시오.
-    // END:
 
-    new Vue({
-      el: "#app",
-    });
-  </script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <stop-watch-component></stop-watch-component>
+    <stop-watch-component></stop-watch-component>
+    <stop-watch-component></stop-watch-component>
+
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- TODO: 2 stop-watch-component를 위한 template을 작성하시오.-->
+<template id="stop-watch-template">
+  <div>
+    <div>time: {{time}}</div>
+    <button @click="start">start</button>
+    <button @click="stop">stop</button>
+    <button @click="reset">reset</button>
+  </div>
+</template>
+<!-- END: -->
+<script>
+  // TODO: 1. stop watch 동작을 위한 stop-watch-component를 전역 component로 작성하시오.
+
+  Vue.component("stop-watch-component", {
+    template: "#stop-watch-template",
+    data() {
+      return {
+        time: 0,
+        timer: null,
+      };
+    },
+    methods: {
+      start() {
+        let that = this;
+
+        // arrow function을 사용하면 this가 Vue instance를 가리키게 된다.
+        this.timer = setInterval(() => {
+          this.time++;
+        }, 1000);
+        // 만약 arrow function을 사용하지 않으면 this가 window를 가리키게 된다.
+        // this.timer = setInterval(function () {
+        //  console.log(that);
+        //  that.time++;
+        //  해결 방법 : that = this; 를 사용한다.
+        //   this.time++;
+        // }, 1000);
+      },
+      stop() {
+        clearInterval(this.timer);
+      },
+      reset() {
+        this.time = 0;
+      },
+    },
+  });
+
+
+  // END:
+
+  new Vue({
+    el: "#app",
+  });
+</script>
+
 </html>
