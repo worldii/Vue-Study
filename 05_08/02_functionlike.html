@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li>{{sumc}}, {{sumc}} ,{{sumc}}</li>
+            <li>{{summ()}}, {{summ()}} ,{{summ()}}</li>
+            <li>{{user}}</li>
+            <li>{{price}} , {{price | toCurrency}}</li>
+        </ul>
+
+        <button @click="num++">증가</button>
+        <input type="text" v-model="user.name">증가</input>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    num: 10,
+                    user: {
+                        name: "hong"
+                    },
+                    price: 100000
+                }
+            },
+            computed: {
+                sumc() {
+                    console.log("computed")
+                    return this.num * 2;
+                }
+            },
+            methods: {
+                // 메소드 변경 될때마다 호출이 된다. 
+                summ() {
+                    console.log("methods ", (this.num + 2))
+                    return this.num + 2
+                }
+            },
+            watch: {
+                num(nv, ov) {
+                    console.log("watch", ov, nv)
+                    // 객체가 바뀌는 것은 감지가 됨. 
+                },
+                user(nv) {
+                    console.log("user", nv);
+                    // user name 객체 내용이 바뀌는 것은 감지가 안됨
+                },
+                user: {
+                    handler(nv) {
+                        // ov 를 아예 못봄
+                        console.log("user", nv);
+                    },
+                    deep: true
+                }
+            }
+            ,
+            filters: {
+                toCurrency(value) {
+                    return new Intl.NumberFormat("ko-KR", {
+                        style: "currency",
+                        currency: "KRW"
+                    }).format(value);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
