@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <label>사용자 정보:</label>
+            <input type="text" v-model="user.userName" />
+            <input type="text" v-model="user.userAge" />
+            <hr />
+            <!-- TODO: 2 user-info-comp를 작성하고 부모의 user를 props로 할당하시오.-->
+            <!-- END: -->
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // TODO: 1 부모 component로부터 user 를 전달받아 내용을 출력하는 user-info-comp를 global component로 작성하시오.
+        // END:
+
+        new Vue({
+            el: "#app",
+            data: {
+                user: {
+                    userName: "홍길동",
+                    userAge: 30,
+                },
+            },
+        });
+    </script>
+</html>

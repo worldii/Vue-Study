@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <input type="number" v-model="num" />
+            <!-- TODO: 2. child-component를 사용하면서 propsdata에 message를 정적 또는 동적 값을 할당하시오.-->
+            <!-- END: -->
+
+            <hr />
+            <local-factorial-component :to="num"></local-factorial-component>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // TODO: 1. global-sum-component라는 이름으로 전역 component를 선언하시오. 이 컴포넌트는 root 컴포넌트로부터 num을 전달받아 0 부터 num까지의 합을 반환출력한다.
+        // END:
+
+        new Vue({
+            el: "#app",
+            data: {
+                num: 1,
+            },
+            // TODO: 2 local-factorial-component라는 이름으로 지역 component를 선언하시오. 이 컴포넌트는 root 컴포넌트로부터 num을 전달받아 해당 수까지의 factorial을 출력한다.
+            // END:
+        });
+    </script>
+</html>

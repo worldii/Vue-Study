@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <p>총 찬성: {{totalAgree}}</p>
+                <p>총 반대: {{totalDisagree}}</p>
+                <hr />
+                <!--reflect 이벤트가 발생하면 update를 호출한다.-->
+                <comp-voter v-for="voter in voters" v-bind:v_name="voter.name" @reflect="update"></comp-voter>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let voters = [
+            {
+                name: "홍길동",
+                result: "",
+            },
+            {
+                name: "임꺽정",
+                result: "",
+            },
+            {
+                name: "장길산",
+                result: "",
+            },
+        ];
+    </script>
+
+    <!-- TODO: 2. 개별 투표자의 선택을 표시하기 위한 component의 template를 구성하시오.-->
+    <!-- END: -->
+
+    <script>
+        // TODO: 1.개별 투표자의 선택을 표현하기 위한 component를 작성하시오.
+        // END:
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    totalAgree: 0,
+                    totalDisagree: 0,
+                    voters,
+                };
+            },
+            // TODO: 3. 투표 내용을 취합하도록 처리하시오.
+            // END:
+        });
+    </script>
+</html>

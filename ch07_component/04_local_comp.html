@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button>컴포넌트 등록</button>
+    <!-- TODO: 3. my-local-comp 를 사용하시오.-->
+    <my-local-comp></my-local-comp>
+    <!-- END: -->
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- TODO: 2. my-local-comp에서 사용할 template을 등록하시오.-->
+<!-- END: -->
+<template id="local-template">
+  <div>Hello local component {{name}}</div>
+</template>
+<script>
+  new Vue({
+    el: "#app",
+
+    // TODO: 1. my-local-comp 이름으로 local component를 생성하시오.
+    components: {
+      "my-local-comp": {
+        template: "#local-template",
+        data() {
+          return {
+            name: "hong"
+          }
+        },
+      }
+    }
+    // END:
+  });
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--template 들이 사용된 코드-->
+    <my-component></my-component>
+    <your-component></your-component>
+    <your-component></your-component>
+    <your-component></your-component>
+  </div>
+
+  <template id="your-comp-template">
+    <div>body 영역에 정의한 template</div>
+  </template>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // TODO: 전역 형태로 my-component와 your-component를 작성하시오.
+  // @@ my-component는 template를 직접 만들어서 사용하고
+  // @@ your-component는 your-comp-template을 템플릿으로 사용한다.
+  Vue.component("my-component", {
+    template: "<div>Hello {{message}}</div>",
+    data: function () {
+      return {
+        message: "World",
+      };
+    }
+  });
+  Vue.component("your-component", {
+    template: "#your-comp-template",
+  });
+
+  new Vue({
+    el: "#app",
+  });
+    // END:
+</script>
+
+</html>

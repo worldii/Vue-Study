@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Insert title here</title>
+        <meta http-equiv="Cache-Control" content="No-Cache" />
+    </head>
+
+    <body>
+        <div id="app1">
+            <my-global></my-global>
+            <my-local></my-local>
+        </div>
+        <div id="app2">
+            <my-global></my-global>
+            <my-local></my-local>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component("my-global", {
+            template: `<div>global component 등록 방식</div>`
+        });
+
+        let vi1 = new Vue({
+            el: "#app1",
+            components: {
+                "my-local": {
+                    template: "<div>local component 등록 방식</div>"
+                }
+            }
+        });
+        // vi2에는 my-local이 없는 상태이다.
+        let vi2 = new Vue({
+            el: "#app2"
+        });
+    </script>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <meta http-equiv="Cache-Control" content="No-Cache" />
+    <style>
+      #info {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      #info td,
+      th {
+        border: 1px solid black;
+      }
+      th:nth-child(1) {
+        width: 25%;
+      }
+      th:nth-child(2) {
+        width: 25%;
+      }
+      th:nth-child(3) {
+        width: 25%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>직원 명단</h1>
+      <!-- TODO: 03 user-comp 를 이용해서 승진대상자와 승진누락자를 표현하시오.-->
+      <!-- END: -->
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- TODO: 01 필요한 화면을 구성할 템플릿을 작성하시오. 직원 타입(승진자,누락자)별로 이름, 입사일, 직위, 급여 정보를 표시한다.-->
+  <!-- END: -->
+
+  <script>
+    // TODO: 02 직원 정보를 출력할 전역 컴포넌트를 등록하시오. 단 컴포넌트의 이름은 user-comp로 한다.
+    // END:
+
+    let vi = new Vue({
+      el: "#app",
+      data: {
+        // infos[[승진대상자],[승진누락자]]
+        infos: [
+          [
+            {
+              id: 1,
+              name: "박구곤",
+              mailid: "sky98",
+              start_date: "1990-03-03",
+              manager_id: 0,
+              title: "사장",
+              dept_id: 118,
+              salary: 5000.0,
+              commission_pct: 0.0,
+            },
+            {
+              id: 2,
+              name: "손명성",
+              mailid: "2xxsig",
+              start_date: "1990-03-08",
+              manager_id: 1,
+              title: "기획부장",
+              dept_id: 110,
+              salary: 3000.0,
+              commission_pct: 0.0,
+            },
+            {
+              id: 3,
+              name: "이은선",
+              mailid: "ch21175",
+              start_date: "1991-06-17",
+              manager_id: 1,
+              title: "영업부장",
+              dept_id: 102,
+              salary: 3500.0,
+              commission_pct: 0.0,
+            },
+          ],
+          [
+            {
+              id: 11,
+              name: "최정선",
+              mailid: "cmagee",
+              start_date: "1990-05-14",
+              manager_id: 3,
+              title: "영업대표이사",
+              dept_id: 102,
+              salary: 2450.0,
+              commission_pct: 10.0,
+            },
+            {
+              id: 12,
+              name: "안은경",
+              mailid: "hgiljum",
+              start_date: "1992-01-18",
+              manager_id: 3,
+              title: "영업대표이사",
+              dept_id: 103,
+              salary: 2500.0,
+              commission_pct: 12.5,
+            },
+            {
+              id: 13,
+              name: "김석우",
+              mailid: "ysedeghi",
+              start_date: "1991-02-18",
+              manager_id: 3,
+              title: "영업대표이사",
+              dept_id: 104,
+              salary: 2650.0,
+              commission_pct: 10.0,
+            },
+          ],
+        ],
+      },
+    });
+  </script>
+</html>

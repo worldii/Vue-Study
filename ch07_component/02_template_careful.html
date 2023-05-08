@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>select는 optgroup과 option만을 화면에 보여준다.컴포넌트를 보이려면 대략 난감.</div>
+      <select name="" id="">
+        <optgroup label="4개의 요소중.."></optgroup>
+        <option value="1">option</option>
+        <li></li>
+        <option-component></option-component>
+        <option-component></option-component>
+      </select>
+      <hr />
+      <div>이때 is 속성으로 컴포넌트를 지정할 수 있다.</div>
+      <select name="" id="">
+        <option is="option-component"></option>
+        <option is="option-component"></option>
+      </select>
+      <hr />
+      <div>또는 안전하게 text/x-template 타입으로 템플릿 선언 후 사용 가능</div>
+      <select-comp></select-comp>
+    </div>
+  </body>
+  <script type="text/x-template" id="select">
+    <select>
+        <option-component></option-component>
+        <option-component></option-component>
+    </select>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component("option-component", {
+      template: "<option>Hello Option</option>"
+    });
+
+    Vue.component("select-comp", {
+      template: "#select"
+    });
+
+    new Vue({
+      el: "#app"
+    });
+  </script>
+</html>

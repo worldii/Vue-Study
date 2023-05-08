@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Insert title here</title>
+        <meta http-equiv="Cache-Control" content="No-Cache" />
+        <style>
+            #list {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            #list td,
+            #list th {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <search-contact-comp></search-contact-comp>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+
+    <script type="text/x-template" id="temp-for-search">
+           <div>
+           <label for="key">이름</label>
+        <input type="text" id="key" @keyup.enter="search" v-model.trim="key" :placeholder="ph">
+        </div>
+    </script>
+
+    <script type="text/x-template" id="temp-for-list">
+           <table id="list">
+        	<tr>
+        	    <th>이름</th>
+        	    <th>입사일</th>
+        	    <th>직위</th>
+        	    <th>급여</th>
+        	</tr>
+        	<tr v-for="emp in emps">
+        		<td>{{emp.name}}</td>
+        		<td>{{emp.start_date|beauty}}</td>
+        		<td>{{emp.title}}</td>
+        		<td>{{emp.salary}}</td>
+        	</tr>
+        </table>
+    </script>
+    <script type="text/x-template" id="temp-for-main">
+           <div>
+        	<search-comp ph="검색어 입력 후 엔터" @search="search"></search-comp>
+        	<br>
+        	<user-comp :emps="emps"></user-comp>
+        	<div v-show="isProcessing==true">조회중</div>
+        </div>
+    </script>
+    <script>
+        Vue.component("search-comp", {
+            template: "#temp-for-search",
+            props: ["ph"],
+            data: function () {
+                return {
+                    key: "",
+                };
+            },
+            methods: {
+                search(e) {
+                    if (key) {
+                        this.$emit("search", this.key);
+                    } else {
+                        alert("1글자 이상 검색어 입력");
+                    }
+                },
+            },
+        });
+
+        Vue.component("user-comp", {
+            template: "#temp-for-list",
+            props: ["emps"],
+            filters: {
+                beauty(startDate) {
+                    console.log(startDate);
+                    return new Date(startDate).toLocaleDateString();
+                },
+            },
+        });
+
+        Vue.component("search-contact-comp", {
+            template: "#temp-for-main",
+            data: function () {
+                return {
+                    emps: [],
+                    isProcessing: false,
+                };
+            },
+            methods: {
+                search(name) {
+                    this.emps = [];
+                    this.isProcessing = true;
+                    let url = "http://localhost:8197/ssafyvue/api/findLikeEmployees/" + name;
+                    axios
+                        .get(url)
+                        .then((res) => {
+                            this.emps = res.data;
+                        })
+                        .catch((e) => {
+                            alert(e);
+                        })
+                        .finally(() => {
+                            this.isProcessing = false;
+                        });
+                },
+            },
+        });
+
+        let vi = new Vue({
+            el: "#app",
+        });
+    </script>
+</html>

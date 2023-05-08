@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Insert title here</title>
+        <meta http-equiv="Cache-Control" content="No-Cache" />
+    </head>
+
+    <body>
+        <div id="app">
+            <fieldset>
+                <comp-1></comp-1>
+            </fieldset>
+            <fieldset>
+                <comp-2></comp-2>
+            </fieldset>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let eventBus = new Vue();
+        Vue.component("comp-1", {
+            template: `<input type="text" @change="trans">`,
+            methods: {
+                trans(e) {
+                    eventBus.$emit("gogo", e.target.value);
+                },
+            },
+        });
+
+        Vue.component("comp-2", {
+            template: `<span>{{msg}}</span>`,
+            data: function () {
+                return {
+                    msg: "message",
+                };
+            },
+            mounted() {
+                // mounted도 잘 동작한다.
+                eventBus.$on("gogo", this.update);
+                // update 함수를 직접 작성하면
+                // 함수 내에서 this가 event bus가 되므로 곤란하다. this를 that으로 받아놓고 쓰거나..
+                /*let that = this;
+                eventBus.$on("gogo", function (param) {
+                    console.log("ebus", this);
+                    console.log(this.msg, param);
+                    that.msg = param;
+                });
+                */
+            },
+            methods: {
+                update(data) {
+                    this.msg = data;
+                },
+            },
+        });
+
+        let vi = new Vue({
+            el: "#app",
+        });
+    </script>
+</html>

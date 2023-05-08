@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Insert title here</title>
+        <meta http-equiv="Cache-Control" content="No-Cache" />
+
+        <!-- 공용 스타일 시작 -->
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            .header {
+                background-color: purple;
+                padding: 30px 30px;
+                color: yellow;
+                text-align: center;
+            }
+        </style>
+        <!-- 공용 스타일 종료 -->
+        <!-- list component 스타일 시작 -->
+        <style>
+            ul {
+                margin: 0;
+                padding: 0;
+            }
+
+            ul li {
+                cursor: pointer;
+                position: relative;
+                padding: 8px 8px 8px 40px;
+                background: #eee;
+                font-size: 14px;
+                transition: 0.2s;
+                user-select: none;
+            }
+
+            ul li:hover {
+                background: #ddd;
+            }
+
+            ul li.checked {
+                background: #bbb;
+                color: #fff;
+                text-decoration: line-through;
+            }
+
+            ul li.checked::before {
+                content: " ";
+                position: absolute;
+                border-color: #fff;
+                border-style: solid;
+                border-width: 0px 1px 1px 0px;
+                top: 10px;
+                left: 16px;
+                transform: rotate(45deg);
+                height: 8px;
+                width: 8px;
+            }
+
+            .close {
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 12px 16px 12px 16px;
+            }
+
+            .close:hover {
+                background-color: #f44336;
+                color: white;
+            }
+        </style>
+        <!-- list component 스타일 종료 -->
+        <!-- input component 스타일 시작-->
+        <style>
+            .input {
+                border: none;
+                width: 75%;
+                height: 35px;
+                padding: 10px;
+                float: left;
+                font-size: 16px;
+            }
+
+            .addButton {
+                padding: 10px;
+                width: 25%;
+                height: 35px;
+                background: #d9d9d9;
+                color: #555;
+                float: left;
+                text-align: center;
+                font-size: 13px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .addbutton:hover {
+                background-color: #bbb;
+            }
+        </style>
+        <!-- input component style 종료-->
+    </head>
+
+    <body>
+        <div id="todolistapp">
+            <div id="header" class="header">
+                <h2>Todo List App</h2>
+                <input-comp></input-comp>
+            </div>
+            <list-comp></list-comp>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 이벤트 버스 객체
+        let eventBus = new Vue();
+    </script>
+    <!-- input component 시작 -->
+    <!-- TODO: input-comp를 작성하시오. 할일을 입력받은 후 엔터키를 입력하거나 추가 버튼을 클릭하면 eventBus의 add-todo를 호출해 할일을 추가한다.-->
+    <!-- END: -->
+    <!-- input component 종료 -->
+
+    <!-- TODO: list-comp를 구성한다. -->
+    <!-- @@: 할일 목록을 이용해서 li를 반복 구성한다. 완료된 작업은 (완료)가 보인다. [삭제]를 클릭하면 요소를 삭제한다.-->
+    <!-- @@: li를 클릭하면 Todo의 done 값을 toggle 시키고 이에 따라 checked class를 적용하거나 하지 않는다.-->
+    <!-- @@: eventBus에서 add-todo 이벤트가 발생하면 todo를 리스트에 추가한다. -->
+    <!-- @@: .close인 span을 추가하고 클릭하면 할일을 삭제한다. -->
+    <!-- END: -->
+    <!-- list component 종료 -->
+    <script>
+        let vi = new Vue({
+            el: "#todolistapp",
+        });
+    </script>
+</html>
