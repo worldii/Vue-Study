@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <div id="app">
-            <div>
-                <span>직원 수: {{emps.length}}, 총 급여: {{total}}</span>
-            </div>
-            <hr />
-            <!-- TODO: 3.emp-comp component를 사용하시오. -->
-            <!-- END: -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <span>직원 수: {{emps.length}}, 총 급여: {{total}}</span>
         </div>
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type="text/x-template" id="emp-temp">
+        <hr />
+        <!-- TODO: 3.emp-comp component를 사용하시오. -->
+        <emp-comp :emps="emps" @please-up="okUp"></emp-comp>
+
+        <!-- END: -->
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/x-template" id="emp-temp">
         <table border="1">
             <tr>
                 <th>이름</th>
@@ -33,56 +37,86 @@
             </tr>
         </table>
     </script>
-    <script>
-        let emps = [
-            {
-                id: 11,
-                name: "최정선",
-                mailid: "cmagee",
-                start_date: "1990-05-14",
-                manager_id: 3,
-                title: "영업대표이사",
-                dept_id: 102,
-                salary: 2450.0,
-                commission_pct: 10.0,
+<script>
+    let emps = [
+        {
+            id: 11,
+            name: "최정선",
+            mailid: "cmagee",
+            start_date: "1990-05-14",
+            manager_id: 3,
+            title: "영업대표이사",
+            dept_id: 102,
+            salary: 2450.0,
+            commission_pct: 10.0,
+        },
+        {
+            id: 12,
+            name: "안은경",
+            mailid: "hgiljum",
+            start_date: "1992-01-18",
+            manager_id: 3,
+            title: "영업대표이사",
+            dept_id: 103,
+            salary: 2500.0,
+            commission_pct: 12.5,
+        },
+        {
+            id: 13,
+            name: "김석우",
+            mailid: "ysedeghi",
+            start_date: "1991-02-18",
+            manager_id: 3,
+            title: "영업대표이사",
+            dept_id: 104,
+            salary: 2650.0,
+            commission_pct: 10.0,
+        },
+    ];
+    // TODO: 2. 전역 component인 emp-comp를 작성하시오. template으로 emp-temp를 사용하며 salaryUp이 호출되면 부모가 관리하는 emps의 정보도 업데이트 되어야 한다.
+    Vue.component("emp-comp", {
+        template: "#emp-temp",
+        props: ["emps"],
+        methods: {
+            salaryUp(id) {
+                for (let emp of this.emps) {
+                    if (emp.id == id) {
+                        emp.salary += 100;
+                        this.$emit("please-up", id);
+                    }
+                }
             },
-            {
-                id: 12,
-                name: "안은경",
-                mailid: "hgiljum",
-                start_date: "1992-01-18",
-                manager_id: 3,
-                title: "영업대표이사",
-                dept_id: 103,
-                salary: 2500.0,
-                commission_pct: 12.5,
-            },
-            {
-                id: 13,
-                name: "김석우",
-                mailid: "ysedeghi",
-                start_date: "1991-02-18",
-                manager_id: 3,
-                title: "영업대표이사",
-                dept_id: 104,
-                salary: 2650.0,
-                commission_pct: 10.0,
-            },
-        ];
-        // TODO: 2. 전역 component인 emp-comp를 작성하시오. template으로 emp-temp를 사용하며 salaryUp이 호출되면 부모가 관리하는 emps의 정보도 업데이트 되어야 한다.
+        },
+    });
+    // END:
+
+    new Vue({
+        el: "#app",
+        data: {
+            emps,
+            total: 0, // 전체 직원의 급여 합
+        },
+        // TODO: 1. life cycle hook을 이용해서 total을 초기화 하시오.
+        created() {
+            for (let emp of this.emps) {
+                this.total += emp.salary;
+            }
+        },
         // END:
 
-        new Vue({
-            el: "#app",
-            data: {
-                emps,
-                total: 0, // 전체 직원의 급여 합
+        // TODO: 4. 자식 component의 요청 사항을 처리하도록 구현하시오.
+        methods: {
+            okUp(id) {
+                for (let emp of this.emps) {
+                    if (emp.id == id) {
+                        emp.salary += 100;
+                        this.total += 100;
+                    }
+                }
             },
-            // TODO: 1. life cycle hook을 이용해서 total을 초기화 하시오.
-            // END:
+        },
+        // END:
+    });
+</script>
 
-            // TODO: 4. 자식 component의 요청 사항을 처리하도록 구현하시오.
-            // END:
-        });
-    </script>
 </html>

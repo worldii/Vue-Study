@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <div id="app">
-            <!--3. receive_send_log 이벤트 발생 시 printLog 호출-->
-            <child-comp @receive_send_log="printLog"></child-comp>
-        </div>
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-        Vue.component("child-comp", {
-            template: `<button @click="sendLog">click</button>`, // 1. 클릭하면 sendLog 호출
-            methods: {
-                sendLog() {
-                    // 2. component에서 receive_send_log 이벤트 발행
-                    this.$emit("receive_send_log", "이것좀 보세요", "저것두요");
-                }
-            }
-        });
 
-        new Vue({
-            el: "#app",
-            methods: {
-                printLog(msg1, msg2) {
-                    console.log("log: " + msg1 + " : " + msg2);
-                }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--3. receive_send_log 이벤트 발생 시 printLog 호출-->
+        <child-comp @receive_send_log="printLog"></child-comp>
+        <child-comp @click="printLog"></child-comp>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.component("child-comp", {
+        template: `<button @click="sendLog">click</button>`, // 1. 클릭하면 sendLog 호출
+        methods: {
+            sendLog() {
+                // 2. component에서 receive_send_log 이벤트 발행
+                this.$emit("receive_send_log", "이것좀 보세요", "저것두요");
             }
-        });
-    </script>
+        }
+    });
+
+    new Vue({
+        el: "#app",
+        methods: {
+            printLog(msg1, msg2) {
+                console.log("log: " + msg1 + " : " + msg2);
+            }
+        }
+    });
+</script>
+
 </html>
