@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>도서관리</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="header">
+        <a href="index.html"> <img src="./img/ssafy_logo.png" id="ssafy_logo" /></a>
+        <p class="logo">도서관리</p>
+      </div>
+      <div class="regist">
+        <h1 class="underline">SSAFY 도서 정보</h1>
+        <div class="regist_form">
+          <label for="isbn">도서번호</label>
+          <div class="view">{{book.isbn}}</div>
+          <label for="title">도서명</label>
+          <div class="view">{{book.title}}</div>
+          <label for="author">저자</label>
+          <div class="view">{{book.author}}</div>
+          <label for="price">가격</label>
+          <div class="view">{{book.price}}원</div>
+          <label for="content">설명</label>
+          <div class="view">{{book.desc}}</div>
+          <div style="padding-top: 15px">
+            <a href="#" class="btn" @click="modifyBook">수정</a>
+            <a href="#" class="btn" @click="deleteBook">삭제</a>
+            <a href="./list.html" class="btn">목록</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import {books} from "/work/js/data.js";
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            book: {},
+            books,
+          };
+        },
+        // 데이터 구성은 created life cycle hook
+        created() {
+          const search = location.search;
+          const isbn = new URLSearchParams(location.search).get("isbn");
+          this.book = this.books[isbn];
+        },
+        methods: {
+          deleteBook() {
+            location.href = "/work/delete.html?isbn=" + this.book.isbn;
+          },
+          modifyBook() {
+            location.href = "/work/modify.html?isbn=" + this.book.isbn;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
