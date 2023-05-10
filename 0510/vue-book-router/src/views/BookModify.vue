@@ -19,18 +19,24 @@
     </div>
 </template>
 <script>
+import { books } from '@/assets/data/data';
 export default {
     name: 'BookModify',
      data() {
-        return {
+         return {
+            books: books,
             book: { isbn: "", title: "", author: "", price: 0, desc: "" },
         };
     },
     created() {
+
         // router를 통해서 전달 받은 isbn을 이용하여 페이지 전환
         // const search = location.search;
         // const isbn = new URLSearchParams(location.search).get("isbn");
         // this.book = this.books[isbn];
+        alert("전달받은 정보" + this.$route.params.id);
+        this.book = books[this.$route.params.id];
+        console.log(this.book);
     },
     methods: {
         modify() {
@@ -39,7 +45,8 @@ export default {
         },
         list() {
             // router 를 통해서 페이지 전환
-            location.href = "/work/list.html";
+            this.$router.push("/list");
+            // location.href = "/list.html";
         },
     },
 };

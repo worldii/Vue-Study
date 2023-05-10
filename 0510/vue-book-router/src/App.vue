@@ -1,41 +1,79 @@
 <template>
   <div id="app">
    <ul>
-          <TheNavi></TheNavi>
-          
+    <TheNavi></TheNavi>    
     <li>
-      <a href="./create.html">도서 등록</a>
+      <router-link to="/create">도서 등록</router-link>
     </li>
     <li>
-      <a href="./list.html">도서 목록</a>
+      <router-link to="/list">도서 목록</router-link>
+    </li>
+ 
+    <li>
+      <router-link to="/user">사용자 보기</router-link>
+    </li>
+    <li>
+      <router-link to="/user/hong">사용자 보기 1 </router-link>
+    </li>
+
+    <li>
+      <router-link to="/user/jang">사용자 보기 2 </router-link>
+    </li>
+
+    <li>
+      <router-link :to="{path:'/user/jang',  query : {
+        name : '장동건',
+        age : 40
+      }}">사용자 보기 3 
+      </router-link>
+    </li>
+    <li>
+      <router-link :to="{name :'UserView', params : {id:'lim'},  path:'/user/jang',  query : {
+        name : '장동건',
+        age : 40
+      }}">사용자 보기 4 
+      </router-link>
+    </li>
+
+    <li>
+      <button @click="move('kim', 30, 'busan')"> 프로그래밍
+      </button>
+    </li>
+
+    <li>
+      <router-link to="/user/jang/shopping">쇼핑 목록</router-link>
+    </li>
+    <li>
+      <router-link to="/user/jang/profile">사용자 프로필</router-link>
     </li>
 
   </ul>
-      <BookCreate></BookCreate>
-  
-      <book-list></book-list>
-      <book-modify></book-modify>
-      <book-view-vue :book="book"></book-view-vue>
-
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+
 import { books } from '@/assets/data/data.js';
-
 import TheNavi from './components/TheNavi.vue';
-import BookCreate from './views/BookCreate.vue';
-import BookList from './views/BookList.vue';
-import BookModify from './views/BookModify.vue';
-import BookViewVue from './views/BookView.vue';
-export default {
 
+export default {
+  methods: {
+    move(id, age, addr) { 
+      this.$router.push({
+        name: 'UserView',
+        params: {
+          id: id,
+        },
+        query: {
+          age: age,
+          addr: addr,
+        },
+      });
+    },
+  },
   components: {
     TheNavi,
-    BookCreate,
-    BookList,
-    BookModify,
-    BookViewVue
   },
   data() {
     return {
@@ -45,9 +83,7 @@ export default {
   },
   created() {
     this.book = books['111-222-7777']
-    
   },
-  methods: {},
 };
 
 </script>

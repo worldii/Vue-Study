@@ -36,7 +36,7 @@ export default {
         },
         list() {
             // router 로 대체 
-            location.href = "/work/list.html";
+            location.href = "/list";
         },
     },
     created() {},

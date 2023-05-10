@@ -19,8 +19,15 @@ export default {
   
     methods: {
        detail(isbn) {
-           location.href = "/work/view.html?isbn=" + isbn;
-       }
+           //location.href = "/book/" + isbn;
+
+            this.$router.push({
+
+                path: '/book/' + isbn,
+                
+                name: 'BookView', params: { id: isbn }
+            });
+        }
     },
 };
 </script>
