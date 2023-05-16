@@ -1,0 +1,21 @@
+[2m2023-05-16 09:05:35.834[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36m.e.DevToolsPropertyDefaultsPostProcessor[0;39m [2m:[0;39m Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2m2023-05-16 09:05:35.837[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36m.e.DevToolsPropertyDefaultsPostProcessor[0;39m [2m:[0;39m For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2m2023-05-16 09:05:36.603[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port(s): 9999 (http)
+[2m2023-05-16 09:05:36.649[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 812 ms
+[2m2023-05-16 09:05:37.083[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36mo.s.b.d.a.OptionalLiveReloadServer      [0;39m [2m:[0;39m LiveReload server is running on port 35729
+[2m2023-05-16 09:05:37.209[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port(s): 9999 (http) with context path '/vue'
+[2m2023-05-16 09:07:26.350[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[nio-9999-exec-1][0;39m [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Initializing Servlet 'dispatcherServlet'
+[2m2023-05-16 09:07:26.351[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[nio-9999-exec-1][0;39m [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Completed initialization in 1 ms
+[2m2023-05-16 09:07:26.380[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[nio-9999-exec-2][0;39m [36mc.ssafy.vue.controller.BoardController  [0;39m [2m:[0;39m listArticle - 호출
+[2m2023-05-16 09:08:10.054[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[nio-9999-exec-4][0;39m [36mc.s.vue.controller.HouseMapController   [0;39m [2m:[0;39m sido - 호출
+[2m2023-05-16 09:08:12.366[0;39m [32m INFO[0;39m [35m17412[0;39m [2m---[0;39m [2m[nio-9999-exec-5][0;39m [36mc.s.vue.controller.HouseMapController   [0;39m [2m:[0;39m gugun - 호출
+2023-05-16 09:28:41.029  INFO 6504 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-16 09:28:41.031  INFO 6504 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-16 09:28:42.202  INFO 6504 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9999 (http)
+2023-05-16 09:28:42.279  INFO 6504 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1248 ms
+2023-05-16 09:28:42.975  INFO 6504 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-05-16 09:28:43.153  INFO 6504 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9999 (http) with context path '/vue'
+2023-05-16 09:30:02.811  INFO 6504 --- [nio-9999-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-16 09:30:02.812  INFO 6504 --- [nio-9999-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-16 09:30:02.847  INFO 6504 --- [nio-9999-exec-1] c.ssafy.vue.controller.BoardController   : listArticle - 호출
+2023-05-16 09:30:05.555  INFO 6504 --- [nio-9999-exec-4] c.s.vue.controller.HouseMapController    : sido - 호출
